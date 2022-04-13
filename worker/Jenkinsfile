@@ -5,6 +5,10 @@ pipeline {
   }
   stages {
     stage("build") {
+      when{
+        branch 'master'
+        changeset '**/worker'
+      }
       steps {
         echo 'Compiling worker app'
         sh 'ls -l'
@@ -14,13 +18,27 @@ pipeline {
       }
     }
     stage("test") {
+      when{
+        branch 'master'
+        changeset '**/worker'
+      }
       steps {
         echo 'Running Unit Tets on worker app'
+        dir('worker'){
+            sh 'mvn clean test'
+        }
       }
     }
     stage("package") {
+      when{
+        branch 'master'
+        changeset '**/worker'
+      }
       steps {
         echo 'Packaging worker app'
+        dir('worker'){
+            sh 'mvn packege -DskipTests'
+        }
       }
     }
   }
