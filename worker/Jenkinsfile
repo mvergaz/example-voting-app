@@ -40,12 +40,12 @@ pipeline {
       }
     }
   }
-  post {
-    success{
-      slackSend message "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-    }
+  post {    
     always {
-      echo 'Building multibranch pipeline for worker is completed..'
+      echo 'Building multibranch pipeline for worker is completed. Sending a message through Slack'
+    }
+    success{
+      slackSend (message: "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
     }
   }
 }
