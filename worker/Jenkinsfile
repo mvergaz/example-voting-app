@@ -5,8 +5,7 @@ pipeline {
   }
   stages {
     stage("build") {
-      when{
-        branch 'master'
+      when{        
         changeset '**/worker'
       }
       steps {
@@ -18,8 +17,7 @@ pipeline {
       }
     }
     stage("test") {
-      when{
-        branch 'master'
+      when{        
         changeset '**/worker'
       }
       steps {
