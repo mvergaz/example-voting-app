@@ -42,11 +42,10 @@ pipeline {
   }
   post {
     success{
-      slackSend "Build Finished - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+      slackSend "Build Finished"
     }
     always {
       echo 'Building multibranch pipeline for worker is completed..'
-      
     }
   }
 }
