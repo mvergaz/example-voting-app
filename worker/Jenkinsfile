@@ -7,9 +7,10 @@ pipeline {
     stage("build") {
       steps {
         echo 'Compiling worker app'
-        dir('worker'){
+        ls -l
+        /*dir('worker'){
             sh 'mvn compile'
-        }
+        }*/
       }
     }
     stage("test") {
